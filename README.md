@@ -19,5 +19,6 @@ This is a work-in-progress to solve specific problems in security and informatio
 
 - [ardb](https://github.com/yinqiwen/ardb) as storage back-end
 - Python 3.6
-
+- [Pgpy](https://github.com/SecurityInnovation/PGPy)
+- redis python library
 

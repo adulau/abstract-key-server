@@ -1,0 +1,3 @@
+[submodule "deps/ardb"]
+	path = deps/ardb
+	url = https://github.com/yinqiwen/ardb.git
