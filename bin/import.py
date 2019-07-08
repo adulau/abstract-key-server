@@ -4,14 +4,13 @@ import argparse
 import os
 import configparser
 
-version = 'aks 0.1'
-
 parser = argparse.ArgumentParser(description='aks - import OpenPGP key into the datastore')
 config = configparser.RawConfigParser()
 config.read('../conf/aks.conf')
 uid_max_size = int(config.get('global', 'uid-max-size'))
 ardb_port = int(config.get('global', 'ardb-port'))
 namespace = config.get('global', 'namespace')
+version = config.get('global', 'version')
 parser.add_argument('-f', '--file', help='OpenPGP key file')
 parser.add_argument('--expired', help='Import expired key')
 parser.add_argument('--namespace', help='Namespace where to import the OpenPGP key', default=namespace)

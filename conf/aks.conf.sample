@@ -2,3 +2,4 @@
 uid-max-size = 400
 ardb-port = 14242
 namespace = default
+version = aks 0.1
