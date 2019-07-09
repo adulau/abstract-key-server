@@ -19,15 +19,22 @@ def index():
 @app.route('/pks/lookup')
 def pks():
     op = request.args.get('op').lower()
-    if not (op == 'get' or op == 'search'):
-        abort(500)
+    if not (op == 'get' or op == 'index'):
+        abort(501)
     search = request.args.get('search')
     if not search:
         abort(500)
     if op == 'get' and search.lower().startswith('0x'):
-        print('Searching for {}'.format(search))
+        print('Get for {}'.format(search))
         if backend.exists('k:{}'.format(search.lower()[2:])):
             return '{}'.format(backend.get('k:{}'.format(search.lower()[2:])))
+    if op == 'index' and search.lower():
+        print('Searching for {}'.format(search))
+        ret = backend.scan(0, 'ue:*{}'.format(search), count=100)
+        if len(ret[1]) > 0:
+            return '{}'.format(ret[1])
+        else:
+            abort(404)
     return '{}\n'.format(op)
 
 @app.route('/version')
