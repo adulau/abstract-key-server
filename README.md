@@ -28,11 +28,11 @@ This is a work-in-progress to solve specific problems in security and informatio
 
 | key type   | key name         | values              |
 |------------|------------------|---------------------|
-|   k/v      |  k:<fingerprint> | armored PGP key     |
-|   set      |  n:<namespace>   | set of fingerprints |
-|   set      |  un:<uid-name>   | set of fingerprints |
-|   set      |  uc:<uid-name>   | set of fingerprints |
-|   set      |  ue:<uid-name>   | set of fingerprints |
+|   k/v      |  k:_fingerprint_ | armored PGP key     |
+|   set      |  n:_namespace_   | set of fingerprints |
+|   set      |  un:_uid-name_   | set of fingerprints |
+|   set      |  uc:_uid-name_   | set of fingerprints |
+|   set      |  ue:_uid-name_   | set of fingerprints |
 
 
 - un -> name in the UID
