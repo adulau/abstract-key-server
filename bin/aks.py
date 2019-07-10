@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, request, abort, Response
 import configparser
 import redis
 
@@ -18,6 +18,10 @@ def index():
 
 @app.route('/pks/lookup')
 def pks():
+    if (request.headers.get('Content-Type') is None) or (request.headers.get('ContentType') == 'text/plain') or (request.headers.get('ContentType') == 'application/pgp-keys'):
+        machinereadable = True
+    else:
+        machinereadable = False
     op = request.args.get('op').lower()
     if not (op == 'get' or op == 'index'):
         abort(501)
@@ -27,7 +31,7 @@ def pks():
     if op == 'get' and search.lower().startswith('0x'):
         print('Get for {}'.format(search))
         if backend.exists('k:{}'.format(search.lower()[2:])):
-            return '{}'.format(backend.get('k:{}'.format(search.lower()[2:])))
+            return Response('{}'.format(backend.get('k:{}'.format(search.lower()[2:]))), mimetype='application/pgp-keys')
     if op == 'index' and search.lower():
         print('Searching for {}'.format(search))
         ret = backend.scan(0, 'ue:*{}'.format(search), count=100)
