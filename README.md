@@ -14,6 +14,7 @@ This is a work-in-progress to solve specific problems in security and informatio
 - Standard HKP interface with `add` method disabled
 - Simple interface to filter out known malicious or rogue PGP keys
 - Fast and reliable
+- Simple namespace to group keys in a set of known members (e.g. CSIRT, MISP sharing group, organisation)
 
 # Requirements
 
@@ -21,4 +22,20 @@ This is a work-in-progress to solve specific problems in security and informatio
 - Python 3.6
 - [Pgpy](https://github.com/SecurityInnovation/PGPy)
 - redis python library
+- Flask
+
+## Back-end format (ardb)
+
+| key type   | key name         | values              |
+|------------|------------------|---------------------|
+|   k/v      |  k:<fingerprint> | armored PGP key     |
+|   set      |  n:<namespace>   | set of fingerprints |
+|   set      |  un:<uid-name>   | set of fingerprints |
+|   set      |  uc:<uid-name>   | set of fingerprints |
+|   set      |  ue:<uid-name>   | set of fingerprints |
+
+
+- un -> name in the UID
+- uc -> comment in the UID
+- ue -> email in the UID
 
